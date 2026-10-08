@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Analyst Portfolio</title>
+    <style>
+        :root {
+            --bg-color: #f8f9fa;
+            --text-main: #1a2530;
+            --text-muted: #606f7b;
+            --accent-color: #0d3b66; 
+            --accent-hover: #05203c;
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* --- Định dạng các vùng nội dung chung --- */
+        section {
+            padding: 35px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            color: var(--accent-color);
+            margin: 0 0 25px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            padding-bottom: 40px;
+        }
+
+        .hero-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent-color);
+            flex-shrink: 0;
+        }
+
+        .hero-text h1 {
+            margin: 0 0 10px 0;
+            font-size: 2.2rem;
+            color: var(--accent-color);
+        }
+
+        .hero-text h2 {
+            margin: 0 0 15px 0;
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .hero-text p {
+            margin: 0 0 20px 0;
+            font-size: 1.05rem;
+        }
+
+        .contact-links a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            margin-right: 20px;
+        }
+
+        .contact-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- Core Competencies --- */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            background-color: #ffffff;
+            border: 1px solid var(--border-color);
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* --- Cấu trúc danh sách CV (Kinh nghiệm, Học vấn, CLB) --- */
+        .resume-item {
+            margin-bottom: 25px;
+        }
+
+        .resume-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .resume-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 5px;
+        }
+
+        .resume-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .resume-company {
+            font-size: 1.05rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin: 2px 0 0 0;
+        }
+
+        .resume-date {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+
+        .resume-details {
+            margin: 8px 0 0 0;
+            padding-left: 20px;
+            font-size: 0.95rem;
+        }
+
+        .resume-details li {
+            margin-bottom: 5px;
+        }
+
+        /* --- Khối Chứng Chỉ (Certifications) --- */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .cert-card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            padding: 15px 20px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cert-info h4 {
+            margin: 0 0 5px 0;
+            font-size: 1.05rem;
+        }
+
+        .cert-info p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* --- Selected Case Studies (Dự án) --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .project-card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .project-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .project-content h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.15rem;
+        }
+
+        .project-content p {
+            margin: 0 0 20px 0;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            flex-grow: 1;
+        }
+
+        /* --- Expandable Text Styles (from index.html) --- */
+        .more-text {
+            display: none;
+        }
+
+        .read-more-btn {
+            background: none;
+            border: none;
+            color: var(--accent-color);
+            font-weight: 600;
+            cursor: pointer;
+            padding: 0 0 0 4px;
+            font-size: 0.92rem;
+            text-decoration: underline;
+        }
+
+        .read-more-btn:hover {
+            color: var(--accent-hover);
+        }
+
+        /* --- Nút bấm --- */
+        .btn-view {
+            display: inline-block;
+            text-align: center;
+            background-color: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            font-size: 0.95rem;
+            transition: background 0.2s ease;
+            margin-top: auto;
+        }
+
+        .btn-view:hover {
+            background-color: var(--accent-hover);
+        }
+
+        /* --- PDF MODAL SYSTEM --- */
+        .pdf-modal {
+            display: none; 
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); 
+            z-index: 1000;
+            justify-content: center; align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            width: 85%; max-width: 1000px; height: 85vh;
+            border-radius: 8px; overflow: hidden;
+            position: relative; display: flex; flex-direction: column;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .modal-header {
+            padding: 15px 20px;
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--border-color);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        .modal-title { margin: 0; font-size: 1.2rem; color: var(--accent-color); font-weight: 600; }
+        .close-btn { font-size: 1.8rem; background: none; border: none; color: var(--text-muted); cursor: pointer; line-height: 1; }
+        .close-btn:hover { color: #ff4d4d; }
+        .pdf-iframe { width: 100%; flex-grow: 1; border: none; }
+        body.modal-open { overflow: hidden; }
+
+        @media (max-width: 700px) {
+            .hero { flex-direction: column; text-align: center; gap: 20px; }
+            .projects-grid, .cert-grid { grid-template-columns: 1fr; }
+            .resume-header { flex-direction: column; gap: 5px; }
+            .modal-content { width: 95%; height: 90vh; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <section class="hero">
+            <img src="1J1A8489.JPG" alt="Ảnh cá nhân của tôi" width="200" height="200" style="border-radius: 50%; object-fit: cover;">
+            <div class="hero-text">
+                <h1>Nguyen Ha Anh</h1>
+                <h2>Corporate Finance & Valuation Analyst</h2>
+                <p>
+                    Data-driven financial analyst specializing in discounted cash flow (DCF) modeling, market trend synthesis, and data dashboard infrastructure.
+                    I am a motivated and detail-oriented Bachelor Finance student in RMIT University with a strong foundation in financial analysis, and data-driven decision-making. I have interest in diverse areas ranging from credit risk analysis, business development, to investment banking. I am currently seeking opportunities in investment analyst, and management consulting.
+                </p>
+                <div class="contact-links">
+                    <a href="mailto:2232005nguyenhaanh@gmail.com">Email Me</a>
+                    <a href="https://www.linkedin.com/in/anh-nguyenha/" target="_blank">LinkedIn</a>
+                    <a href="https://drive.google.com/file/d/1zVkiIsBwu7Ngkf8uCgsR1ZiG5LGTXBJ7/preview" target="_blank">View Resume (PDF)</a>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Core Competencies</h2>
+            <div class="skills-grid">
+                <span class="skill-tag">Financial Modeling</span>
+                <span class="skill-tag">DCF & LBO Valuation</span>
+                <span class="skill-tag">Advanced Excel (VBA)</span>
+                <span class="skill-tag">SQL & Data Extraction</span>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Work Experience</h2>
+            
+            <div class="resume-item">
+                <div class="resume-header">
+                    <div>
+                        <h3 class="resume-title">FInance Intern</h3>
+                        <p class="resume-company">SACT company</p>
+                    </div>
+                    <span class="resume-date">Tháng 06/2025 - Hiện tại</span>
+                </div>
+                <ul class="resume-details">
+                    <li>Consult customers with financial products (derivatives)</li>
+                    <li>Explore potential clients, update related news with analysis for buy/sell recommendation</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Selected Case Studies</h2>
+            <div class="projects-grid">
+                
+                <div class="project-card">
+                    <img src="qantas.png" alt="Image Preview" class="project-img">
+                    <div class="project-content">
+                        <h3>Qantas's Company Report Valuation</h3>
+                        <p>This report provides a comprehensive corporate finance analysis of Qantas Airways, evaluating its post-pandemic financial recovery and future outlook. Based on data current to May 2025, the work suggests that Qantas’s stock is overvalued at that time, estimating an intrinsic value of $9.21 per share due to its annoucement of special dividends. We recommend that Qantas should prioritize improving its liquidity management and gradually reducing its debt-to-EBITDA ratio to maintain long-term financial stability.</p>
+                        <button class="btn-view" onclick="openPdf('Equity Valuation Report', 'https://docs.google.com/document/d/1aTZZYy-N3cxuzjVKRiIGSf3IO4ZjwTP1/edit?usp=drive_link&ouid=108680960832367614248&rtpof=true&sd=true')">Open Analysis PDF</button>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="santos.png" alt="Market Analysis Preview" class="project-img">
+                    <div class="project-content">
+                        <h3>Macroeconomic Market Analysis</h3>
+                        <p>
+                            This report provides a comprehensive corporate finance analysis of Santos Ltd, an Australian oil and gas company.<span class="dots">...</span>
+                            <span class="more-text"> Utilizing a top-down analytical approach, the work evaluates the company’s market standing through macroeconomic, industry, and firm-specific lenses to provide a final investment recommendation. Our report suggests buying STO stock due to undervaluation. Santos’s regular dividend payments make the DDM reliable, while FCFE considers net income and future capital investments.</span>
+                            <button type="button" class="read-more-btn" onclick="toggleReadMore(this)">Read more</button>
+                        </p>
+                        <button class="btn-view" onclick="openPdf('Macroeconomic Research', 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf')">Open Analysis PDF</button>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="li&fproj.png" alt="Li & Fung Project Preview" class="project-img">
+                    <div class="project-content">
+                        <h3>Microinternship with Li & Fung</h3>
+                        <p>
+                            Centered on mitigating client disintermediation risk facing Li & Fung Vietnam.<span class="dots">...</span>
+                            <span class="more-text"> As a global supply chain integrator, Li & Fung manages sourcing, manufacturing oversight, and logistics. When an apparel client planned to bypass intermediaries to source directly in ASEAN, our strategic analysis identified the core perception gap and delivered high-retention engagement solutions.</span>
+                            <button type="button" class="read-more-btn" onclick="toggleReadMore(this)">Read more</button>
+                        </p>
+                        <button class="btn-view" onclick="openPdf('Li & Fung Project', 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf')">Open Analysis PDF</button>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="derivatives.png" alt="Image Preview" class="project-img">
+                    <div class="project-content">
+                        <h3>Derivatives and Risk Management</h3>
+                        <p>
+                            In a role of a people working in a hedge fund with hedging method, this report outlines <span class="dots">...</span>
+                            <span class="more-text"> a hybrid value (70%) and growth (25%) portfolio totaling USD 999,781.34, invested in Oracle (ORCL), Johnson & Johnson (JNJ), BHP, and Visa (V). The portfolio's 10-day 95% Value at Risk (VaR) was calculated using both historical simulation and model-building approaches. The 10-day 95% Expected Shortfall (CVaR) is -7.0% (USD 70,283). To manage risk, a protective put and a long collar are proposed for BHP. For Oracle's volatility, Long Straddle and Long Strangle strategies are analyzed. In the last part, a currency swap is also structured, enabling the client to borrow USD 1 Million at a reduced fixed rate of 6.14%.</span>
+                            <button type="button" class="read-more-btn" onclick="toggleReadMore(this)">Read more</button>
+                        </p>
+                        <button class="btn-view" onclick="openPdf('Li & Fung Project', 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf')">Open Analysis PDF</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Education</h2>
+            
+            <div class="resume-item">
+                <div class="resume-header">
+                    <div>
+                        <h3 class="resume-title">Master of Science in Financial Analytics (Graduate in Sept 2027)</h3>
+                        <p class="resume-company">Queen's University Belfast</p>
+                    </div>
+                    <span class="resume-date">2026 - 2027</span>
+                </div>
+                <ul class="resume-details">
+                    <li><strong>Course content:</strong> This degree equips with the cutting-edge quantitative and computational techniques utilised by leading finance and FinTech firms.</li>
+                    <li><strong>Relevant coursework:</strong> Advanced Analytics and Machine Learning, Financial Modelling in Python, Asset Pricing.</li>
+                </ul>
+            </div>
+
+            <div class="resume-item">
+                <div class="resume-header">
+                    <div>
+                        <h3 class="resume-title">Bachelor Degree of Business (Finance minor) </h3>
+                        <p class="resume-company">RMIT UNIVERSITY (Royal Melbourne Institute of Technology) - Hanoi campus</p>
+                    </div>
+                    <span class="resume-date">2023 - 2026</span>
+                </div>
+                <ul class="resume-details">
+                    <li><strong>Relevant coursework:</strong> Advanced Corporate Finance, Derivatives and Risk management, Behavioral Finance, Equity investment and portfolio management.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Certifications</h2>
+            <div class="cert-grid">
+                <div class="cert-card">
+                    <div class="cert-info">
+                        <h4>Goldman Sachs Risk job simulation</h4>
+                        <p>Forage - 2026</p>
+                        <p>Individual credit risk analysis using quantified financial data; Developed and recommended risk mitigation strategies Risk assessment and management job simulation</p>
+                    </div>
+                </div>
+
+                <div class="cert-card">
+                    <div class="cert-info">
+                        <h4>PWC Management Consulting Job Simulation (Forage)</h4>
+                        <p>Forage - 2026</p>
+                        <p>Explore M&A Synergies, Build model with reasonable assumptions, divestiture consulting</p>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Clubs & Activities</h2>
+            <div class="resume-item">
+                <div class="resume-header">
+                    <div>
+                        <h3 class="resume-title">Member in R&D Department</h3>
+                        <p class="resume-company">BUFI Club</p>
+                    </div>
+                    <span class="resume-date">2023 - Jan 2024</span>
+                </div>
+                <ul class="resume-details">
+                    <li>Update economic news daily, financial news daily</li>
+                </ul>
+            </div>
+
+            <div class="resume-item">
+                <div class="resume-header">
+                    <div>
+                        <h3 class="resume-title"> Participation in trading competition </h3>
+                        <p class="resume-company">RMIT Trading Competition</p>
+                    </div>
+                    <span class="resume-date">June 2025</span>
+                </div>
+                <ul class="resume-details">
+                    <li>Earned something new about financial markets and foreign exchange trading, and enjoyed the opportunity to network with industry professionals from ACTA, ANZ, NAB and Telstra.</li>
+                </ul>
+            </div>
+
+        </section>
+
+    </div>
+
+    <div id="pdfModal" class="pdf-modal" onclick="closePdfOnOverlay(event)">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle" class="modal-title">Document Viewer</h3>
+                <button class="close-btn" onclick="closePdf()">&times;</button>
+            </div>
+            <iframe id="pdfIframe" src="" class="pdf-iframe"></iframe>
+        </div>
+    </div>
+
+    <script>
+        function toggleReadMore(btn) {
+            const parent = btn.parentElement;
+            const dots = parent.querySelector('.dots');
+            const moreText = parent.querySelector('.more-text');
+
+            if (moreText.style.display === 'inline') {
+                moreText.style.display = 'none';
+                dots.style.display = 'inline';
+                btn.innerText = 'Read more';
+            } else {
+                moreText.style.display = 'inline';
+                dots.style.display = 'none';
+                btn.innerText = 'Read less';
+            }
+        }
+
+        const modal = document.getElementById('pdfModal');
+        const iframe = document.getElementById('pdfIframe');
+        const modalTitle = document.getElementById('modalTitle');
+
+        function openPdf(title, pdfUrl) {
+            modalTitle.innerText = title;
+            iframe.src = pdfUrl; 
+            modal.style.display = 'flex'; 
+            document.body.classList.add('modal-open'); 
+        }
+
+        function closePdf() {
+            modal.style.display = 'none'; 
+            iframe.src = ''; 
+            document.body.classList.remove('modal-open'); 
+        }
+
+        function closePdfOnOverlay(event) {
+            if (event.target === modal) {
+                closePdf();
+            }
+        }
+    </script>
+
+</body>
+</html>
